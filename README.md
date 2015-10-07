@@ -6,11 +6,11 @@ This Project creates a web application that can help house buyers to search and 
 
 Note: 
 
-###.static folder contains css stylesheets
+####.static folder contains css stylesheets
 
-###.templates folder contains the all the created html file.
+####.templates folder contains the all the created html file.
 
-###.text file `out`,`page` are the scraped data from trulia house search webpage.
+####.text file `out`,`page` are the scraped data from trulia house search webpage.
 
-###. The 'housing_data' folder contains the web scaper that is used to crawl  http://www.trulia.com/for_sale/New_York,NY/. 
+####. The 'housing_data' folder contains the web scaper that is used to crawl  http://www.trulia.com/for_sale/New_York,NY/. 
  
