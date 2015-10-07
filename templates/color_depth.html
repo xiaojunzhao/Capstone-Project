@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+ <html>
+  <head>
+  <style>
+  body
+  {
+  background: linear-gradient(180deg, #9c9e9f, #f6f6f6)
+  }
+ .left_side 
+      {
+    border:0;
+    margin:0;
+    padding:0;
+    float:left;
+    width:40%; 
+      }
+  .right_side 
+     {
+      border:0;
+      margin:0;
+      padding:0;
+      float:left;
+      width:60%; 
+     }	
+
+
+  
+  </style>
+         <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.css" type="text/css" />
+         <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.js"></script>
+            {{script|safe}}
+  </head>
+ 
+<body>
+      <div class ="left_side">
+         <form id = "input" method = "post" action = "color_depth">
+                <p style= "text-align : left">
+                <a href = "http://nychouseestimator.herokuapp.com/"> GO BACK</a>   
+                  <h1 style = "color: black">Color Depth Map of Criminal Level</h1>
+                  <iframe width="100%" height="520" frameborder="5" src="https://zhaoxiaojun106.cartodb.com/viz/cace8c4e-6175-11e5-95ae-0e9d821ea90d/embed_map"></iframe>     
+            </form>
+      </div>
+
+      <div class = "right_side" align = "center">
+          <br />
+          <br/>
+          <h1 style = "color: black">Color Depth Map of Housing Prices</h1>
+        <iframe width="70%" height="520" frameborder="0" src="https://zhaoxiaojun106.cartodb.com/viz/f9c3e400-656b-11e5-9eb5-0e0c41326911/embed_map"></iframe>
+      </div>
+</body>
+
+</html>

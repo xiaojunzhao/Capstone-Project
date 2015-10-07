@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+ <html>
+  <head>
+  <style>
+  body
+  {
+  background-image: url(http://www.hdwallpapersllc.com/wp-content/uploads/2015/07/6775989-beautiful-new-york-wallpaper.jpg) ;
+  background-size: cover;
+  }
+ .left_side 
+      {
+    border:0;
+    margin:0;
+    padding:0;
+    float:left;
+    width:40%; 
+      }
+  .right_side 
+     {
+      border:0;
+      margin:0;
+      padding:0;
+      float:left;
+      width:60%; 
+     }	
+ .top_side 
+      {
+    border:0;
+    margin:0;
+    padding:0;
+    float:top;
+    height:40%; 
+      }
+  .bottom_side 
+     {
+      border:0;
+      margin:0;
+      padding:0;
+      float:bottom;
+      height:60%; 
+     } 
+
+  
+  </style>
+         <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.css" type="text/css" />
+         <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.js"></script>
+            {{script1|safe}}
+         <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.css" type="text/css" />
+         <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.js"></script>
+            {{script2|safe}}
+  </head>
+ 
+<body>
+      <div class ="left_side">
+         <form id = "input" method = "post" action = "trend">
+                <p style= "text-align : left">
+                <a href = "http://nychouseestimator.herokuapp.com/"> GO BACK</a>  
+                  {{div1|safe}}
+            </form>
+      </div>
+
+      <div class = "right_side" align = "center">
+          <br />
+          <br/>
+          {{div2|safe}}
+      </div>
+    
+</body>
+
+</html>

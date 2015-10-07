@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+ <html>
+  <head>
+  <style>
+  body
+  {
+    margin:0px;
+    background: linear-gradient(to bottom, #9c9e9f, #f6f6f6)
+  }
+ .left_side 
+      {
+    border:0;
+    margin:0;
+    padding:0;
+    float:left;
+    width:40%; 
+      }
+  .right_side 
+     {
+      border:0;
+      margin:0;
+      padding:0;
+      float:left;
+      width:60%; 
+     }	 
+   .top {
+    position:absolute;
+    height: 5%;
+    left:0;
+    right:0;
+
+}
+
+  
+  </style>
+         <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.css" type="text/css" />
+         <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.js"></script>
+            {{script|safe}}
+  </head>
+ 
+<body>
+      
+      <img src="http://www.esbnyc.com/sites/default/files/styles/splash_image_giant/public/explore-esb.jpg?itok=fqcLbd8O" alt="Mountain View" style="width:1500px;height:400px;">
+      <div class = "top">
+        <a href = "http://nychouseestimator.herokuapp.com/" > GO BACK</a>
+      </div>
+      <div class ="left_side">      
+         <h3> Please enter the required info to search house</h3>
+         <form id = "input" method = "post" action = "index">
+               <p style= "text-align : left">
+                Zip Code: 
+                <input type = "text" name =  "zip code" size = 10>
+                </p>
+                <p>
+                Number of Bedrooms:
+                <select name="bedroom" form="input">
+                  <option value="0">All</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3+">3+</option>
+                </select>
+                </p>
+                <p>
+                Price Range:
+                <select name="price_range" form="input">
+                  <option value = "none">None</option>
+                  <option value="0-1000">$0-1000/sqft</option>
+                  <option value="1000-2000">$1000-2000/sqft</option>
+                  <option value="2000-3000">$2000-3000/sqft</option>
+                  <option value="3000+">$3000+/sqft</option>
+                </select>
+              </p>
+
+                <p style= "text-align : left">
+                <input type = "submit" value = "Search">                
+                </p>
+            </form>
+      </div>
+      <div class = "right_side" align = "center">
+           <!--<h1 style = "text-align: center, color:white" >Simple Demo</h1>-->
+            <!--<iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0"width="650" height="650" src="file:///C:/Users/Xiaojun/Desktop/web%20app/templates/maps.html"><div></iframe>-->
+            {{div|safe}}
+            <h1 style = "text-align: center,color:white">Heat map of house distribution</h1>
+        <iframe width="70%" height="520" frameborder="5" src="https://zhaoxiaojun106.cartodb.com/viz/fa01a5f0-6175-11e5-a47a-0e73ffd62169/embed_map"></iframe>
+      </div>
+</body>
+
+</html>

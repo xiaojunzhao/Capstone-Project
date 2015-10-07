@@ -1,0 +1,49 @@
+#nav{
+	background-color : #222;
+	font-family: Arial;
+}
+#nav_wrapper{
+	width:960px;
+	margin:0 auto;
+	text-align: left;
+}
+
+#nav ul{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	position: relative;
+}
+
+#nav ul li{
+	display: inline-block;
+}
+
+#nav ul li:hover{
+	background-color:#333;
+}
+
+#nav ul li a, visited{
+	color:#ccc;
+	display:block;
+	padding:15px;
+	text-decoration: none;
+}
+
+#nav ul li a:hover{
+	color:#ccc;
+	text-decoration: none;
+}
+
+#nav ul li:hover ul{
+	display:block;
+}
+
+#nav ul ul {
+	display: none;
+	position:absolute;
+	background-color: #333;
+}
+#nav ul ul li{
+	display: block;
+}

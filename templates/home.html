@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+ <html>
+  <head>
+  <style>
+  h1 {
+    color:white;
+    font-family:verdana;
+}
+  body
+  {
+      margin:0px;
+      background: linear-gradient(to right, #9c9e9f, #f6f6f6)
+   }
+ .left_side 
+      {
+    border:0;
+    margin:0;
+    padding:0;
+    float:left;
+    width:40%; 
+      }
+  .right_side 
+     {
+      border:0;
+      margin:0;
+      padding:0;
+      float:left;
+      height: 850px;
+      width:60%;
+ 
+     }	 
+    .top {
+    position:absolute;
+    background-color : #222;
+    top: 0px;
+    height: 20%;
+    left:0;
+    right:0;
+
+}
+
+  .middle {
+    height: 60%;
+    left:0;
+    right:0;
+    position: absolute;
+}
+  .bottom{
+    top:750px;
+    margin:0px;
+    position: relative;
+    height:170px;
+    width:1500px;
+    left:0;
+    right:0;
+    background-color : #333;
+    font-family: Arial;
+    text-align: center; 
+
+}
+  </style>
+  <link href="{{ url_for('static', filename='stylesheets/styles.css') }}" type="text/css" rel="stylesheet" />
+
+  </head>
+ 
+<body>
+
+    <div class = "top">
+      <h1 align="center"> Find Your Home Value in NYC</h1>
+      <div id ="nav">
+          <div id = "nav_wrapper">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href = "#bottom" id ="top">Contact</a></li>
+                <li><a href = "#">Analysis</a>
+                  <ul>
+                      <li><a href = "/DataSet"> Data Set</a></li><li>
+                      <a href = "/FeaturePlot"> Plots</a></li><li>
+                      <a href = "/RegressionAnalysis"> Regression Analysis</a></li>
+                  </ul>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <img src="http://www.hdwallpapersllc.com/wp-content/uploads/2015/07/6775989-beautiful-new-york-wallpaper.jpg" alt="Mountain View" style="width:1500px;height:600px;">
+      <br></br>
+      <br></br>
+    <div class = "middle">
+      <div class ="left_side">
+       <h3> Please enter the required info to search house</h3>
+         <form id = "input0" method = "post" action = "index">
+               <p style= "text-align : left color = white">
+                Zip Code: 
+                <input type = "text" name =  "zip code" size = 10>
+                </p>
+                <p>
+                Number of Bedrooms:
+                <select name="bedroom" form="input0">
+                  <option value="0">All</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3+">3+</option>
+                </select>
+                </p>
+                <p>
+                Price Range:
+                <select name="price_range" form="input0">
+                   <option value = "none">None</option>
+                  <option value="0-1000">$0-1000/sqft</option>
+                  <option value="1000-2000">$1000-2000/sqft</option>
+                  <option value="2000-3000">$2000-3000/sqft</option>
+                  <option value="3000+">$3000+/sqft</option>
+                </select>
+              </p>
+                <p style= "text-align : left">
+                <input type = "submit" value = "Search">
+                </p>
+           </form>
+            <h3> Housing Price Trend (median): </h3>
+             <form id = "input1" method = "post" action = "trend">
+                <p style= "text-align : left">
+                Zip Code: 
+                <input type = "text" name =  "zip code" size = 10>
+                </p>
+                <p style= "text-align : left">
+                <input type = "submit" value = "Housing Price Trend">
+                </p>
+            </form>
+            <h3> Safety: </h3>
+            <form id = "input2" method = "post" action = "color_depth_map">
+                <p style= "text-align : left">
+                <input type = "submit" value = "Crime Risk">
+                </p>
+            </form>
+            <h3> Value Estimation: </h3>
+            <form id = "input3" method = "post" action = "#bottom">                
+                <p style= "text-align : left color = white">
+                Address 
+                <input type = "text" name =  "address_value" size = 10>
+                </p>
+                <!--<p style= "text-align : left color = white">
+                Zip Code: 
+                <input type = "text" name =  "postal_code" size = 10>
+                </p>-->
+                <p>
+                Housing Type:
+                <select name="Housing_type" form="input3">
+                  <option value = "coop">coop</option>
+                  <option value="condo">condo</option>
+                  <option value="Single-Family Home">single family home</option>
+                  <option value="loft">loft</option>
+                  <option value="townhome">townhome</option>
+                  <option value="apartment">apartment</option>
+                </select>
+                </p>
+                <p style= "text-align : left color = white">
+                # Bedrooms 
+                <input type = "text" name =  "#Bedroom" size = 10>
+                </p>
+                <p style= "text-align : left color = white">
+                # Bathrooms 
+                <input type = "text" name =  "#Bathroom" size = 10>
+                </p>
+                <p style= "text-align : left">
+                <input type = "submit" value = "Estimate">
+                </p>
+                <p style="font-family:courier">
+                  Estmated Value: {{prediction}}
+                </p>
+            </form>
+      </div>
+      <div class = "right_side" align = "center">
+           <iframe width="60%" height="600" frameborder="0" src="https://zhaoxiaojun106.cartodb.com/viz/f9c3e400-656b-11e5-9eb5-0e0c41326911/embed_map"></iframe>
+      </div>
+    </div>
+    <br></br>
+<div class = "bottom" id = "bottom">
+</br>
+<h3 style="color: white "> Name: Xiaojun Zhao</h3>
+<h3 style="color: white "> Email: zhaoxiaojun106@gmail.com</h3>
+<h3 style="color: white "> Cellphone: (860)-208-6944</h3>
+</div>
+</body>
+</html>

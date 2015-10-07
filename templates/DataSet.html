@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+ <html>
+  <head>
+  <style>
+    body
+  {
+      margin:0px;
+      font-size:20px;
+      background: linear-gradient(to bottom, #9c9e9f, #f6f6f6);
+   }
+ .left_side 
+      {
+    border:0;
+    margin:0;
+    padding:0;
+    float:left;
+    width:40%; 
+      }
+  .right_side 
+     {
+      border:0;
+      margin:0;
+      padding:0;
+      float:left;
+      height: 850px;
+      width:60%;
+ 
+     }	 
+    .top {
+    position:absolute;
+    background-color : #222;
+    top: 0px;
+    height: 20%;
+    left:0;
+    right:0;
+
+}
+
+  .bottom {
+    bottom:0px;
+    height: 80%;
+    left:0;
+    right:0;
+}
+
+.scrollit {
+    overflow:scroll;
+    height:400px;
+}
+  </style>
+   <link href="{{ url_for('static', filename='stylesheets/styles.css') }}" type="text/css" rel="stylesheet" />
+  </head>
+ 
+<body>
+  <div id ="nav">
+          <div id = "nav_wrapper">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href = "#">Analysis</a>
+                  <ul>
+                      <li><a href = "/DataSet"> Data Set</a></li><li>
+                      <a href = "/FeaturePlot"> Plots</a></li><li>
+                      <a href = "/RegressionAnalysis"> Regression Analysis</a></li>
+                  </ul>
+                </li>
+            </ul>
+          </div>
+        </div>
+  <h2 style = "font-family:Arial">Data Acquisition</h2>
+  <p align="justify"> The Data are obtained from Trulia API and Trulia house search website. And I scraped over 400 pages of trulia house search website and acquired more than 5000 housing properties. After the elimination of the housing properties which don't have key information(housing area and housing prices). I eventually have 2514 housing properties at my hand. 
+  </p>
+  <h2 style = "font-family:Arial">Data Description</h2>
+  <p>Each housing item has the following features: 
+  </p>
+  <p align="justify"><i> Latitude, Longitude, Address, Postal_code, Housing_type,  #Baths, #Beds, Crime_level,Built year, Housing_price/SQFT</i>
+  </p>
+  <p>
+  The following table shows a portion of our dataset:
+  </p>
+<table border="1">
+  <thead>
+    <tr style="text-align: center;">
+      <th width = "250">Address</th>
+      <th width = "100">Postal code</th>
+      <th width = "100">Baths</th>
+      <th width = "100">Beds</th>
+      <th width = "100">Built year</th>
+      <th width = "100">Crime level</th>
+      <th width = "150">House price/sqft</th>
+      <th width = "100">House type</th>
+      <th width = "200">Latitude</th>
+      <th width = "200">Longitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style= "text-align: center">
+      <td colspan="10">
+      <div class="scrollit">
+      <table>
+      <tr>
+      <td>170 W 23rd St #5S</td>
+      <td>10011</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1970</td>
+      <td>2</td>
+      <td>1544</td>
+      <td>1</td>
+      <td>40.743572</td>
+      <td>-73.995440</td>
+    </tr>
+    <tr>
+      <td width = "250">301 E 64th St #15D</td>
+      <td width = "100">10065</td>
+      <td width = "100">1</td>
+      <td width = "100">1</td>
+      <td width = "100">1963</td>
+      <td width = "100">2</td>
+      <td width = "150">1034</td>
+      <td width = "100">2</td>
+      <td width = "200">40.763714</td>
+      <td width = "200">-73.961426</td>
+    </tr>
+    <tr>
+      <td>15 Union Sq W #6D</td>
+      <td>10003</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1870</td>
+      <td>3</td>
+      <td>2717</td>
+      <td>1</td>
+      <td>40.736145</td>
+      <td>-73.991264</td>
+    </tr>
+    <tr>
+      <td>12 W 18th St #4-WEST</td>
+      <td>10011</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1884</td>
+      <td>1</td>
+      <td>1597</td>
+      <td>1</td>
+      <td>40.738792</td>
+      <td>-73.993065</td>
+    </tr>
+    <tr>
+      <td>211 W 71st St #5B</td>
+      <td>10023</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1984</td>
+      <td>3</td>
+      <td>1633</td>
+      <td>1</td>
+      <td>40.778330</td>
+      <td>-73.982574</td>
+    </tr>
+    <tr>
+      <td>900 W 190th St #2G</td>
+      <td>10040</td>
+      <td>2</td>
+      <td>3</td>
+      <td>1955</td>
+      <td>1</td>
+      <td>1250</td>
+      <td>2</td>
+      <td>40.856900</td>
+      <td>-73.936370</td>
+    </tr>
+    <tr>
+      <td>107 W 86th St #2GH</td>
+      <td>10024</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1928</td>
+      <td>1</td>
+      <td>1379</td>
+      <td>2</td>
+      <td>40.786747</td>
+      <td>-73.972410</td>
+    </tr>
+    <tr>
+      <td>1 W End Ave #17H</td>
+      <td>10023</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1986</td>
+      <td>1</td>
+      <td>1989</td>
+      <td>1</td>
+      <td>40.773373</td>
+      <td>-73.989975</td>
+    </tr>
+    <tr>
+      <td>140 Sullivan St #2-Floor</td>
+      <td>10012</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1986</td>
+      <td>2</td>
+      <td>1567</td>
+      <td>3</td>
+      <td>40.727028</td>
+      <td>-74.002304</td>
+    </tr>
+    <tr>
+      <td>130 Barrow St #401</td>
+      <td>10014</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1920</td>
+      <td>2</td>
+      <td>1710</td>
+      <td>1</td>
+      <td>40.732204</td>
+      <td>-74.009320</td>
+    </tr>
+    <tr>
+      <td>200 E 94th St #2911</td>
+      <td>10128</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1987</td>
+      <td>2</td>
+      <td>1505</td>
+      <td>1</td>
+      <td>40.783703</td>
+      <td>-73.950210</td>
+    </tr>
+    <tr>
+      <td>325 Lexington Ave #14B</td>
+      <td>10016</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2014</td>
+      <td>2</td>
+      <td>2048</td>
+      <td>1</td>
+      <td>40.749165</td>
+      <td>-73.977394</td>
+    </tr>
+    <tr>
+      <td>13 W 13th St #2BN</td>
+      <td>10011</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1962</td>
+      <td>3</td>
+      <td>1250</td>
+      <td>2</td>
+      <td>40.736073</td>
+      <td>-73.995060</td>
+    </tr>
+    <tr>
+      <td>120 Riverside Blvd #4U</td>
+      <td>10069</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2005</td>
+      <td>1</td>
+      <td>1407</td>
+      <td>1</td>
+      <td>40.776352</td>
+      <td>-73.989130</td>
+    </tr>
+    <tr>
+      <td>1991 Broadway</td>
+      <td>10023</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1986</td>
+      <td>1</td>
+      <td>1304</td>
+      <td>1</td>
+      <td>40.775276</td>
+      <td>-73.982630</td>
+    </tr>
+    <tr>
+      <td>860 5th Ave #5M</td>
+      <td>10065</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1949</td>
+      <td>1</td>
+      <td>1633</td>
+      <td>2</td>
+      <td>40.769450</td>
+      <td>-73.968704</td>
+    </tr>
+    <tr>
+      <td>151 E 85th St</td>
+      <td>10028</td>
+      <td>2</td>
+      <td>3</td>
+      <td>2009</td>
+      <td>3</td>
+      <td>3159</td>
+      <td>1</td>
+      <td>40.778732</td>
+      <td>-73.955536</td>
+    </tr>
+    <tr>
+      <td>50 Riverside Blvd #21</td>
+      <td>10069</td>
+      <td>2</td>
+      <td>7</td>
+      <td>2015</td>
+      <td>1</td>
+      <td>4251</td>
+      <td>1</td>
+      <td>40.774742</td>
+      <td>-73.990840</td>
+    </tr>
+    <tr>
+      <td>401 E 60th St #28C</td>
+      <td>10022</td>
+      <td>2</td>
+      <td>3</td>
+      <td>1986</td>
+      <td>1</td>
+      <td>1406</td>
+      <td>1</td>
+      <td>40.760376</td>
+      <td>-73.960686</td>
+    </tr>
+    <tr>
+      <td>240 Riverside Blvd #7O</td>
+      <td>10069</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2005</td>
+      <td>1</td>
+      <td>1603</td>
+      <td>1</td>
+      <td>40.780315</td>
+      <td>-73.986960</td>
+    </tr>
+    <tr>
+      <td>155 W 20th St #6A</td>
+      <td>10011</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1936</td>
+      <td>1</td>
+      <td>1053</td>
+      <td>2</td>
+      <td>40.741997</td>
+      <td>-73.996060</td>
+    </tr>
+    <tr>
+      <td>425 E 58th St #45H1</td>
+      <td>10022</td>
+      <td>2</td>
+      <td>5</td>
+      <td>1971</td>
+      <td>1</td>
+      <td>1700</td>
+      <td>2</td>
+      <td>40.758698</td>
+      <td>-73.961390</td>
+    </tr>
+    <tr>
+      <td>175 W 95th St #5HJ</td>
+      <td>10025</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1971</td>
+      <td>3</td>
+      <td>1373</td>
+      <td>1</td>
+      <td>40.793224</td>
+      <td>-73.970100</td>
+    </tr>
+    <tr>
+      <td>524 E 72nd St #29A</td>
+      <td>10021</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1988</td>
+      <td>1</td>
+      <td>1625</td>
+      <td>3</td>
+      <td>40.765940</td>
+      <td>-73.952210</td>
+    </tr>
+    <tr>
+      <td>101 Wall St #18A</td>
+      <td>10005</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1931</td>
+      <td>1</td>
+      <td>1819</td>
+      <td>1</td>
+      <td>40.704803</td>
+      <td>-74.007220</td>
+    </tr>
+    <tr>
+      <td>101 Warren St #1050</td>
+      <td>10007</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2007</td>
+      <td>3</td>
+      <td>2354</td>
+      <td>1</td>
+      <td>40.715412</td>
+      <td>-74.011040</td>
+    </tr>
+    <tr>
+      <td>45 E 80th St #14A</td>
+      <td>10075</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1986</td>
+      <td>2</td>
+      <td>2560</td>
+      <td>1</td>
+      <td>40.777050</td>
+      <td>-73.961230</td>
+    </tr>
+    <tr>
+      <td>212 Warren St #27C</td>
+      <td>10282</td>
+      <td>2</td>
+      <td>3</td>
+      <td>2000</td>
+      <td>1</td>
+      <td>2219</td>
+      <td>1</td>
+      <td>40.716343</td>
+      <td>-74.012420</td>
+    </tr>
+    <tr>
+      <td>269 W 72nd St #6CD</td>
+      <td>10023</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1924</td>
+      <td>1</td>
+      <td>1045</td>
+      <td>2</td>
+      <td>40.779920</td>
+      <td>-73.983986</td>
+    </tr>
+    <tr>
+      <td>524 W 19th St #1</td>
+      <td>10011</td>
+      <td>2</td>
+      <td>3</td>
+      <td>2008</td>
+      <td>1</td>
+      <td>2618</td>
+      <td>1</td>
+      <td>40.745580</td>
+      <td>-74.007350</td>
+    </tr>
+    <tr>
+      <td>118 E 60th St #29G</td>
+      <td>10022</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1964</td>
+      <td>2</td>
+      <td>1376</td>
+      <td>2</td>
+      <td>40.762814</td>
+      <td>-73.968650</td>
+    </tr>
+    <tr>
+      <td>30 Park Pl #46C</td>
+      <td>10007</td>
+      <td>2</td>
+      <td>1</td>
+      <td>2016</td>
+      <td>3</td>
+      <td>3290</td>
+      <td>1</td>
+      <td>40.713055</td>
+      <td>-74.009155</td>
+    </tr>
+    <tr>
+      <td>175 W 12th St #7N</td>
+      <td>10011</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1986</td>
+      <td>4</td>
+      <td>2222</td>
+      <td>1</td>
+      <td>40.737360</td>
+      <td>-74.000130</td>
+    </tr>
+    <tr>
+      <td>128 Central Park S #5CD</td>
+      <td>10019</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1924</td>
+      <td>1</td>
+      <td>1411</td>
+      <td>2</td>
+      <td>40.765945</td>
+      <td>-73.977610</td>
+    </tr>
+    <tr>
+      <td>420 E 58th St #15B</td>
+      <td>10022</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1985</td>
+      <td>1</td>
+      <td>1500</td>
+      <td>1</td>
+      <td>40.758408</td>
+      <td>-73.961660</td>
+    </tr>
+    <tr>
+      <td>555 W 59th St #10A</td>
+      <td>10019</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1986</td>
+      <td>1</td>
+      <td>1648</td>
+      <td>1</td>
+      <td>40.771650</td>
+      <td>-73.989590</td>
+    </tr>
+    <tr>
+      <td>126 W 73rd St #4A</td>
+      <td>10023</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1986</td>
+      <td>1</td>
+      <td>1165</td>
+      <td>2</td>
+      <td>40.778310</td>
+      <td>-73.979416</td>
+    </tr>
+    <tr>
+      <td>160 Central Park S</td>
+      <td>10019</td>
+      <td>2</td>
+      <td>4</td>
+      <td>1930</td>
+      <td>1</td>
+      <td>1972</td>
+      <td>1</td>
+      <td>40.766174</td>
+      <td>-73.978516</td>
+    </tr>
+    <tr>
+      <td>160 Central Park S</td>
+      <td>10019</td>
+      <td>3</td>
+      <td>3</td>
+      <td>1986</td>
+      <td>1</td>
+      <td>3942</td>
+      <td>1</td>
+      <td>40.766174</td>
+      <td>-73.978516</td>
+    </tr>
+    <tr>
+      <td>160 Central Park S</td>
+      <td>10019</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1986</td>
+      <td>1</td>
+      <td>4914</td>
+      <td>1</td>
+      <td>40.766174</td>
+      <td>-73.978516</td>
+    </tr>
+    <tr>
+      <td>8 E 12th St #5</td>
+      <td>10003</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1986</td>
+      <td>1</td>
+      <td>2318</td>
+      <td>1</td>
+      <td>40.734130</td>
+      <td>-73.993900</td>
+    </tr>
+    <tr>
+      <td>1991 Broadway #16A</td>
+      <td>10023</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1986</td>
+      <td>1</td>
+      <td>2040</td>
+      <td>1</td>
+      <td>40.775276</td>
+      <td>-73.982630</td>
+    </tr>
+    <tr>
+      <td>505 W 19th St</td>
+      <td>10011</td>
+      <td>2</td>
+      <td>4</td>
+      <td>2015</td>
+      <td>1</td>
+      <td>4042</td>
+      <td>1</td>
+      <td>40.745647</td>
+      <td>-74.006370</td>
+    </tr>
+    <tr>
+      <td>245 W 14th St #- APT TOWER 2</td>
+      <td>10011</td>
+      <td>2</td>
+      <td>4</td>
+      <td>2015</td>
+      <td>4</td>
+      <td>2814</td>
+      <td>1</td>
+      <td>40.739616</td>
+      <td>-74.001430</td>
+    </tr>
+    <tr>
+      <td>1 W End Ave #21B</td>
+      <td>10023</td>
+      <td>3</td>
+      <td>3</td>
+      <td>1986</td>
+      <td>1</td>
+      <td>1972</td>
+      <td>1</td>
+      <td>40.773373</td>
+      <td>-73.989975</td>
+    </tr>
+    <tr>
+      <td>155 W 11th St #8C</td>
+      <td>10011</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2014</td>
+      <td>1</td>
+      <td>3287</td>
+      <td>1</td>
+      <td>40.736310</td>
+      <td>-74.000070</td>
+    </tr>
+    <tr>
+      <td>30 Park Pl #73C</td>
+      <td>10007</td>
+      <td>3</td>
+      <td>3</td>
+      <td>2016</td>
+      <td>3</td>
+      <td>3774</td>
+      <td>1</td>
+      <td>40.713055</td>
+      <td>-74.009155</td>
+    </tr>
+    <tr>
+      <td>1 Central Park S #1807</td>
+      <td>10019</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1907</td>
+      <td>1</td>
+      <td>5384</td>
+      <td>1</td>
+      <td>40.764130</td>
+      <td>-73.973560</td>
+    </tr>
+    <tr>
+      <td>515 E 72nd St #22G</td>
+      <td>10021</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1985</td>
+      <td>1</td>
+      <td>1804</td>
+      <td>1</td>
+      <td>40.766870</td>
+      <td>-73.952660</td>
+    </tr>
+    <tr>
+      <td>45 E 22nd St #46A</td>
+      <td>10010</td>
+      <td>3</td>
+      <td>3</td>
+      <td>2016</td>
+      <td>1</td>
+      <td>3782</td>
+      <td>1</td>
+      <td>40.739933</td>
+      <td>-73.987230</td>
+    </tr>
+  </table>
+      </div>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+</body>
+
+</html>

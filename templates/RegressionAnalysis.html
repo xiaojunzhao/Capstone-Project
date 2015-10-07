@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+ <html>
+  <head>
+  <style>
+    body
+  {
+      margin:15px;
+      font-size:20px;
+      background: linear-gradient(to bottom, #9c9e9f, #f6f6f6);
+   }
+ .left_side 
+      {
+    border:0;
+    margin:0;
+    padding:0;
+    float:left;
+    width:40%; 
+      }
+  .right_side 
+     {
+      border:0;
+      margin:0;
+      padding:0;
+      float:left;
+      height: 850px;
+      width:60%;
+ 
+     }	 
+    .top {
+    position:absolute;
+    background-color : #222;
+    top: 0px;
+    height: 20%;
+    left:0;
+    right:0;
+
+}
+
+  .bottom {
+    bottom:0px;
+    height: 80%;
+    left:0;
+    right:0;
+}
+
+.scrollit {
+    overflow:scroll;
+    height:400px;
+}
+.center{
+
+}
+  </style>
+        <link href="{{ url_for('static', filename='stylesheets/styles.css') }}" type="text/css" rel="stylesheet" />
+         <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.css" type="text/css" />
+         <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.js"></script>
+            {{script|safe}}
+  </head>
+ 
+<body>
+  <div id ="nav">
+          <div id = "nav_wrapper">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href = "#">Analysis</a>
+                  <ul>
+                      <li><a href = "/DataSet"> Data Set</a></li><li>
+                      <a href = "/FeaturePlot"> Plots</a></li><li>
+                      <a href = "/RegressionAnalysis"> Regression Analysis</a></li>
+                  </ul>
+                </li>
+            </ul>
+          </div>
+        </div>
+  <h3 style = "font-family:Arial">Regression Models</h3>
+  <p align="justify"> By now, I've tried three regression models: KNN Regression, Ridge Regression and Random Forest Regression 
+  </p>
+  <h3 style = "font-family:Arial">Objective</h3>
+  <p>To train the regression model, I choose 25 housing properties that are geographically closest to the target house as the training set. But Why 25, not 50, or 100 ?  
+  </p>
+  <h4 style = "font-family:Arial"> Choose the appropriate number of neighbors as training data</h4>
+  <div class = "center" align = "center">  
+    {{div|safe}}
+  </div>
+  <h3 style = "font-family:Arial">Performances</h3>
+  <p align="justify">The following figure shows the performance of the three models:
+    <p align = "center">
+    <table border="1" align = "center">
+      <tr style="text-align: center;">
+      <th width = "100"></th>
+      <th width = "150">Mean Absolute Percentage Error(MAPE)</th>
+    </tr>
+    <tbody>
+      <tr style= "text-align: center">
+        <td height = "50">KNN Regression</td>
+        <td>39.10%</td>
+      </tr>
+      <tr style= "text-align: center">
+        <td height = "50">Random Forest Regression</td>
+        <td>23.51%</td>
+      </tr>
+      <tr style= "text-align: center">
+        <td height = "50">Ridge Regression</td>
+        <td>28.28%</td>
+      </tr>
+    </tbody>
+  </table>
+  <p align = "center">
+  TABLE 1. Performances of three models
+</p>
+  </p>
+</p>
+<h3 style = "font-family:Arial">Predictions Results</h3>
+<table border="1" align ="center">
+  <thead>
+    <tr style="text-align: center">
+      <th>Predictions $/sqft</th>
+      <th>True value $/sqft</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style= "text-align: center">
+      <td colspan="2">
+    <div class="scrollit">
+    <table>
+    <tr>
+      <td width = "200">1331.166667</td>
+      <td width = "100">1227</td>
+    </tr>
+    <tr>
+      <td>1756.766667</td>
+      <td>1544</td>
+    </tr>
+    <tr>
+      <td>2142.153846</td>
+      <td>2315</td>
+    </tr>
+    <tr>
+      <td>2279.846154</td>
+      <td>2564</td>
+    </tr>
+    <tr>
+      <td>1582.500000</td>
+      <td>1373</td>
+    </tr>
+    <tr>
+      <td>1982.333333</td>
+      <td>3166</td>
+    </tr>
+    <tr>
+      <td>1475.235294</td>
+      <td>2051</td>
+    </tr>
+    <tr>
+      <td>1431.529412</td>
+      <td>1124</td>
+    </tr>
+    <tr>
+      <td>2623.121795</td>
+      <td>2600</td>
+    </tr>
+    <tr>
+      <td>3390.096154</td>
+      <td>2659</td>
+    </tr>
+    <tr>
+      <td>3372.000000</td>
+      <td>2564</td>
+    </tr>
+    <tr>
+      <td>2217.000000</td>
+      <td>1859</td>
+    </tr>
+    <tr>
+      <td>2053.750000</td>
+      <td>1602</td>
+    </tr>
+    <tr>
+      <td>3283.666667</td>
+      <td>3290</td>
+    </tr>
+    <tr>
+      <td>3009.142857</td>
+      <td>2164</td>
+    </tr>
+    <tr>
+      <td>2252.571429</td>
+      <td>2658</td>
+    </tr>
+    <tr>
+      <td>1685.489130</td>
+      <td>1597</td>
+    </tr>
+    <tr>
+      <td>1880.478261</td>
+      <td>1260</td>
+    </tr>
+    <tr>
+      <td>1892.111111</td>
+      <td>2036</td>
+    </tr>
+    <tr>
+      <td>1862.592593</td>
+      <td>1200</td>
+    </tr>
+    <tr>
+      <td>1859.822222</td>
+      <td>2116</td>
+    </tr>
+    <tr>
+      <td>1735.666667</td>
+      <td>1652</td>
+    </tr>
+    <tr>
+      <td>1750.000000</td>
+      <td>1889</td>
+    </tr>
+    <tr>
+      <td>1361.000000</td>
+      <td>1250</td>
+    </tr>
+    <tr>
+      <td>2229.857143</td>
+      <td>1902</td>
+    </tr>
+    <tr>
+      <td>1998.142857</td>
+      <td>2646</td>
+    </tr>
+    <tr>
+      <td>1899.000000</td>
+      <td>1902</td>
+    </tr>
+    <tr>
+      <td>3942.000000</td>
+      <td>2646</td>
+    </tr>
+    <tr>
+      <td>2045.500000</td>
+      <td>1902</td>
+    </tr>
+    <tr>
+      <td>2017.500000</td>
+      <td>2646</td>
+    </tr>
+    <tr>
+      <td>2018.250000</td>
+      <td>1059</td>
+    </tr>
+    <tr>
+      <td>1594.125000</td>
+      <td>1112</td>
+    </tr>
+    <tr>
+      <td>2220.076923</td>
+      <td>1020</td>
+    </tr>
+    <tr>
+      <td>3117.307692</td>
+      <td>2200</td>
+    </tr>
+    <tr>
+      <td>1746.222222</td>
+      <td>2119</td>
+    </tr>
+    <tr>
+      <td>2286.844444</td>
+      <td>2840</td>
+    </tr>
+    <tr>
+      <td>1548.333333</td>
+      <td>1547</td>
+    </tr>
+    <tr>
+      <td>2328.000000</td>
+      <td>1698</td>
+    </tr>
+    <tr>
+      <td>2164.361111</td>
+      <td>2459</td>
+    </tr>
+    <tr>
+      <td>2164.361111</td>
+      <td>2605</td>
+    </tr>
+    <tr>
+      <td>3233.500000</td>
+      <td>3182</td>
+    </tr>
+    <tr>
+      <td>2161.000000</td>
+      <td>2302</td>
+    </tr>
+    <tr>
+      <td>1966.226667</td>
+      <td>1602</td>
+    </tr>
+    <tr>
+      <td>3258.560000</td>
+      <td>3290</td>
+    </tr>
+    <tr>
+      <td>1779.500000</td>
+      <td>2077</td>
+    </tr>
+    <tr>
+      <td>2446.296883</td>
+      <td>2214</td>
+    </tr>
+    <tr>
+      <td>1668.700000</td>
+      <td>1625</td>
+    </tr>
+    <tr>
+      <td>2077.000000</td>
+      <td>1801</td>
+    </tr>
+    <tr>
+      <td>3368.228571</td>
+      <td>2893</td>
+    </tr>
+    <tr>
+      <td>1453.333333</td>
+      <td>1240</td>
+    </tr>
+    <tr>
+      <td>1959.944444</td>
+      <td>1957</td>
+    </tr>
+  </table>
+  </div>
+  </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+
+</html>
