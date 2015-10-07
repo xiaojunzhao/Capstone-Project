@@ -5,6 +5,7 @@ This Project creates a web application that can help house buyers to search and 
 
 
 Note: 
+
 1.static folder contains css stylesheets
 
 2.templates folder contains the all the created html file. 
