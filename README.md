@@ -12,5 +12,5 @@ Note:
 
 3.text file `out`,`page` are the scraped data from trulia house search webpage.
 
-4. housing_data folder contains the web scaper that is used to crawl  http://www.trulia.com/for_sale/New_York,NY/. 
+4. The 'housing_data' folder contains the web scaper that is used to crawl  http://www.trulia.com/for_sale/New_York,NY/. 
  
