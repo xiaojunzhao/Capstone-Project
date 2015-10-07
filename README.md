@@ -7,7 +7,7 @@ This Project creates a web application that can help house buyers to search and 
 Note: 
 
 
-static folder contains css stylesheets
-templates folder contains the all the created html file. 
-text file `out`,`page` are the scraped data from trulia house search webpage  
+1.static folder contains css stylesheets
+2.templates folder contains the all the created html file. 
+3.text file `out`,`page` are the scraped data from trulia house search webpage  
  
